@@ -14,6 +14,12 @@ def get_date():
     today = date.today()
     return today.strftime('%Y-%m-%d')
 
+
+def get_month():
+    today = date.today()
+    return today.strftime('%Y-%m')
+
+
 class Ledger:
     """Keeps track of letter order for filename and returns propoerly formmatted filename"""
     @staticmethod
@@ -56,8 +62,8 @@ class FilePaths:
         self.successes_parent = self.images.joinpath('successes')
         self.failures_parent = self.images.joinpath('failures')
         self.unnamed_parent = self.images.joinpath('original-photos')
-        self.successes = self.successes_parent.joinpath(f'{get_date()}_successes')
-        self.failures = self.failures_parent.joinpath(f'{get_date()}_failures')
+        self.successes = self.successes_parent.joinpath(f'{get_month()}_successes')
+        self.failures = self.failures_parent.joinpath(f'{get_month()}_failures')
         self.unnamed = self.unnamed_parent.joinpath(f'{get_date()}_originals')
         # Make success/failure directories if they don't already exist
         self.unnamed_parent.mkdir(parents=True, exist_ok=True)
@@ -81,7 +87,7 @@ class FilePaths:
 
 
 class Taxonomy:
-    fields = ['catalogNumber', 'scientificName', 'irn']
+    fields = ['catalogNumber', 'scientificName']
 
     def __init__(self):
         self.df = pd.read_csv('taxonomy.csv', usecols=self.fields)
@@ -189,7 +195,7 @@ def main(dir=None):
                 stats['FAILURES'] += 1
                 stats["TOTAL"] += 1
                 failure_date = get_date()
-                save_path = paths.failures.joinpath(f'{fp.stem}_{failure_date}_LACMIP_loc-lot_a.jpg')
+                save_path = paths.failures.joinpath(f'{fp.stem}_{failure_date}_FAILURE.jpg')
                 cv2.imwrite(str(save_path), image.original_image)
             shutil.move(str(fp), str(paths.unnamed))
     print(f'{stats["SUCCESSES"]} successes \n{stats["FAILURES"]} failures.\
