@@ -9,6 +9,10 @@ from pathlib import Path
 from datetime import date
 
 
+# Add location of images folder here
+IMAGES_FOLDER = '/Volumes/GoogleDrive/Shared drives/LACMIP Imaging/IMLS Type Specimens/TO PROCESS'
+
+
 def get_date():
     """Returns properly formatted date string for image folder name"""
     today = date.today()
@@ -203,4 +207,4 @@ def main(dir=None):
     paths.save_to_records(stats)
 
 
-main(dir='/Volumes/GoogleDrive/Shared drives/LACMIP Imaging/IMLS Type Specimens/TO PROCESS')
+main(dir=IMAGES_FOLDER)

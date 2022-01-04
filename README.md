@@ -12,6 +12,24 @@ Documentation for how this script was used can be found in the [here in the LACM
 
 This script relies upon Python 3.6+. You can find the latest version of Python for your system on the [official Python.org downloads page](https://www.python.org/downloads/). 
 
+## Installation
+
+1. Download the code from this repository 
+2. Open Terminal
+3. Ensure that python 3.6 or greater is installed by running `python --version` or `python3 --version` (depending on how your PATH variable is set)
+4. `cd` into the folder where you installed the code
+5. Run `pip install -r requirements.txt` — this will install all of the dependencies for the python script
+6. Copy the full file path of where the images are stored
+7. Open the `imls_barcode_reader.py` file in a text editor and pate the full file path copied in the previous step between the `''` on line 13. 
+
+At this point, the script can be run manually by issuing the following command in Terminal:
+
+```
+python imls_barcode_reader.py
+```
+
+However, this script was designed to run on a periodic basis. On macOS this can be accomplished with Cron. 
+
 ## Filename pattern
 
 ### Successes
