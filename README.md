@@ -14,7 +14,7 @@ This script relies upon Python 3.6+. You can find the latest version of Python f
 
 ## Installation
 
-1. Download the code from this repository 
+1. Download the code from this repository (or clone using git)
 2. Open Terminal
 3. Ensure that python 3.6 or greater is installed by running `python --version` or `python3 --version` (depending on how your PATH variable is set)
 4. `cd` into the folder where you installed the code
@@ -148,18 +148,18 @@ The output of the script will be the following file structure:
 
 ```
 images
-	|-- PhotosRecord.csv
-	|-- failures
-			|-- 2022-01_failures
-					|-- Img6604_2022_01_03_FAILURE.jpg
+  |-- PhotosRecord.csv
+  |-- failures
+      |-- 2022-01_failures
+          |-- Img6604_2022_01_03_FAILURE.jpg
       |-- 2022-02_failures
-    			|-- Img6605_2022_02_01_FAILURE.jpg
-	|-- successes
-			|-- 2022-01_successes
+          |-- Img6605_2022_02_01_FAILURE.jpg
+  |-- successes
+      |-- 2022-01_successes
           |-- LACMIP_10093-21_Tessarolax grahami_a.jpg
           |-- LACMIP_10093-21_Tessarolax grahami_b.jpg
           |-- LACMIP_10093-21_labels_a.jpg
- 			|-- 2022-02_successes
+      |-- 2022-02_successes
           |-- LACMIP_11951-2_Tessarolax incrustata_a.jpg'
           |-- LACMIP_11951-2_labels_a.jpg
 ```
