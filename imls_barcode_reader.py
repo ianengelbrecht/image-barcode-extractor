@@ -10,7 +10,7 @@ from datetime import date
 
 
 # Add location of images folder here
-IMAGES_FOLDER = '/Volumes/GoogleDrive/Shared drives/LACMIP Imaging/IMLS Type Specimens/TO PROCESS'
+IMAGES_FOLDER = ''
 
 
 def get_date():
@@ -186,7 +186,6 @@ def main(dir=None):
                     taxon = taxonomy.return_taxon(f'LACMIP {barcode_values[0]}')
                     barcode_value = barcode_values[0]
                 print(f'{fp.stem}: {barcode_value}')
-                #letter = ledger.return_letter(barcode_value)
                 cat_num = format_cat_number(barcode_value)
                 stats['SUCCESSES'] += 1
                 stats["TOTAL"] += 1
@@ -201,6 +200,7 @@ def main(dir=None):
                 failure_date = get_date()
                 save_path = paths.failures.joinpath(f'{fp.stem}_{failure_date}_FAILURE.jpg')
                 cv2.imwrite(str(save_path), image.original_image)
+            # Move original photo original_images folder
             shutil.move(str(fp), str(paths.unnamed))
     print(f'{stats["SUCCESSES"]} successes \n{stats["FAILURES"]} failures.\
     \nThis function took {round(time.time()-start)} seconds')

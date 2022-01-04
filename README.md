@@ -28,7 +28,66 @@ At this point, the script can be run manually by issuing the following command i
 python imls_barcode_reader.py
 ```
 
-However, this script was designed to run on a periodic basis. On macOS this can be accomplished with Cron. 
+However, this script was designed to run on a periodic basis. On macOS this can be accomplished with Cron, use [this guide on how to schedule python scripts with cron](https://towardsdatascience.com/how-to-schedule-python-scripts-with-cron-the-only-guide-youll-ever-need-deea2df63b4e).
+
+1. Cron uses a specific syntax to schedule scripts. For example, to run a script every Friday at 3:00PM, the following would be used:
+
+   ```
+   0 3 * * FRI
+   ```
+
+   To create your own cron schedule expression, use [crontab.guru](https://crontab.guru/).
+
+2. Open Terminal
+
+3. Run `which python3` and copy the file path — this is the absolute file path of where your Python executable is saved
+
+4. In a text editor, enter the following, all on the same line
+
+   ```
+   <cronScheduleExpression> cd <scriptFolderPath> && <pythonFilePath> <scriptFilePath>
+   ```
+
+   - **cronScheduleExpression** : this is the cron schedule expression created in step 1
+   - **scriptFolderPath** : the file path of the folder that contains the imls_barcode_reader.py file
+   - **pythonFilePath** : the file path from step 3 (the output of `which python3`)
+   - **scriptFilePath** : the file path of the ims_barcode_reader.py file
+
+   An example of a cron schedule is below:
+
+   ```
+   * * * * * cd /Users/dmarkbreiter/Code/image_barcode_reader && /Users/dmarkbreiter/Code/image_barcode_reader/venv/bin/python3 /Users/dmarkbreiter/Code/image_barcode_reader/imls_barcode_reader.py
+   ```
+
+5. Enter `crontab -e` into Terminal
+
+6. Press `I` to enter INSERT mode
+
+7. Enter the line of code from step 4
+
+8. Press `ESC` to exit INSERT mode
+
+9. Enter `wq` to save and exit
+
+10. Open "System Preferences"
+
+11. Navigate to Security & Privacy > Privacy > Full Disk Access
+
+12. Click on the lock in the lower left corner to make changes
+
+13. Open Finder and press Go > Go to Folder and enter `/usr/sbin`
+
+14. Drag the `cron` folder into the list of folders listed in Full Disk Access
+
+15. Click on the lock again to save changes
+
+This will schedule the Python script to run and allows for Cron to make changes to your Google Drive folder. To see if the script was successfully run, open Terminal and enter `mail`. 
+
+A list of numbered items should appear (each corresponding to a time the script was run). Enter the number of a message into Terminal and you can read the output of the script. 
+
+### Scheduling the script
+
+Scheduling a python script on macOS can be accomplished used Cron, using the following the steps. For a detailed explanation on how to use cron, 
 
 ## Filename pattern
 
