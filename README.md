@@ -1,5 +1,5 @@
-# LACMIP Type Specimen Barcode Reader
-Reads barcodes from images, originally designed for the LACMIP IMLS 2019 grant project.
+# LACMIP Image Barcode Reader
+Reads and renames image files containing barcoded LACMIP specimen labels.
 
 Documentation for how this script was used can be found in the [here in the LACMIP EMu Handbook](https://lacmip.github.io/emu/documentation/imaging/).
 
@@ -106,7 +106,7 @@ LACMIP_<catNumber>_<taxon>_<letter>.jpg
 And example of a file name is as follows:
 
 ```
-LACMIP_10093-21_Tessarolax grahami_a.jpg
+LACMIP_10093-21_Tessarolax_grahami_a.jpg
 ```
 
 The file name pattern is controlled by the Ledger objects `return_filename`method. 
