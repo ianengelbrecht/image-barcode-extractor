@@ -1,7 +1,7 @@
 # LACMIP Image Barcode Reader
 Reads and renames image files containing barcoded LACMIP specimen labels.
 
-Documentation for how this script was used can be found in the [here in the LACMIP EMu Handbook](https://lacmip.github.io/emu/documentation/imaging/).
+Documentation for how this script was used can be found in the [LACMIP EMu Handbook](https://lacmip.github.io/emu/documentation/imaging/).
 
 ## Requirements
 
