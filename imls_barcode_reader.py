@@ -3,14 +3,14 @@ import time
 import string
 import numpy as np
 import pandas as pd
-import shutil
+import os
 from pyzbar import pyzbar
 from pathlib import Path
 from datetime import datetime
 
 
 # Add location of images folder here
-IMAGES_FOLDER = '/Volumes/GoogleDrive/Shared drives/LACMIP Imaging/IMLS Type Specimens/TO_PROCESS'
+IMAGES_FOLDER = r'F:\Herbarium imaging\PRU\QuickGuide\JPEG'
 
 # Variables used for processing images for barcode reading
 BRIGHTNESS = 0
@@ -61,7 +61,7 @@ class Ledger:
     def return_filename(self, cat_number, taxon):
         letter = self.__return_letter(cat_number)
         cat_num = self.__format_cat_number(cat_number)
-        file_name = f'LACMIP_{cat_num}_{taxon}_{letter}.jpg' if taxon else f'LACMIP_{cat_num}_{letter}.jpg'
+        file_name = f'{cat_num}_{taxon}_{letter}.jpg' if taxon else f'{cat_num}_{letter}.jpg'
         return file_name
 
 
@@ -101,16 +101,22 @@ class Taxonomy:
     fields = ['catalogNumber', 'scientificName']
 
     def __init__(self):
-        self.df = pd.read_csv('taxonomy.csv', usecols=self.fields)
+        if os.path.isfile('taxonomy.csv'):
+            self.df = pd.read_csv('taxonomy.csv', usecols=self.fields)
+        else:
+            self.df = None
 
     def return_taxon(self, cat_num):
-        row = self.df.loc[self.df.catalogNumber == cat_num]
-        if not row.empty:
-            scientific_name = row['scientificName'].values[0]
-            taxon = scientific_name if scientific_name else None
+        if self.df is not None:
+            row = self.df.loc[self.df.catalogNumber == cat_num]
+            if not row.empty:
+                scientific_name = row['scientificName'].values[0]
+                taxon = scientific_name if scientific_name else None
+                return taxon.replace(' ', '_')
+            else:
+                return None
         else:
-            taxon = None
-        return taxon.replace(' ', '_')
+            return None
 
 
 class Image:
@@ -162,9 +168,6 @@ class Image:
         self.sharpen()
         barcodes = pyzbar.decode(self.image)
         return barcodes
-
-
-
 
 
 def main(dir=None):
